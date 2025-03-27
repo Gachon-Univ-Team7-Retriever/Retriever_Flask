@@ -50,3 +50,4 @@ IPython
 # 클러스터링에 필요한 패키지
 torch
 scikit-learn
+python-louvain
