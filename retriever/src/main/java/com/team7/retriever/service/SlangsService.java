@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SlangsService {
@@ -33,5 +34,15 @@ public class SlangsService {
     // count 많은 순으로 조회
     public List<Slangs> getSlangsSortedByCount() {
         return slangsRepository.findAllByOrderByCountDesc();
+    }
+
+    // DB에서 slang 리스트로 받아오기
+    public List<String> getAllSlangsToList() {
+        return slangsRepository.findAll() // DB에서 전체 조회
+                .stream()
+                .map(Slangs::getSlang) // slang 필드만 추출
+                .filter(slang -> slang != null) // slang이 null이 아닌 경우만
+                .map(slang -> "t.me " + slang) // 각 slang 앞에 t.me 추가
+                .collect(Collectors.toList()); // 리스트로 변환
     }
 }

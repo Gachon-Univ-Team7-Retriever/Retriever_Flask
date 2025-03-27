@@ -23,6 +23,8 @@ public class ChScrapeController {
     }
      */
 
+    // 직접 실행하는 코드 (업데이트X)
+    /*
     @PostMapping("/telegram/channel/scrape")
     public String channelScrape(@RequestBody String requestBody) {
         try {
@@ -45,6 +47,8 @@ public class ChScrapeController {
             return "Error: Invalid JSON format";
         }
     }
+
+     */
 
 
 }

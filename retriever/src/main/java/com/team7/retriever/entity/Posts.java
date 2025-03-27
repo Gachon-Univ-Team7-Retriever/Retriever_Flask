@@ -3,6 +3,7 @@ package com.team7.retriever.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Document(collection = "posts")
 public class Posts {
@@ -14,12 +15,16 @@ public class Posts {
     private String siteName;
     private String title;
     private String content;
-    private String promoSiteLink;
-    private String promoSiteName;
+    // private String promoSiteLink;
+    // private String promoSiteName;
+    private List<String> promoSiteLink; /* 250123 수정 */
+    private List<String> promoSiteName; /* 250123 수정 */
     private String author;
     private LocalDateTime timestamp;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
+    private boolean deleted;
 
     public Posts() {}
 
@@ -72,19 +77,23 @@ public class Posts {
         this.content = content;
     }
 
-    public String getPromoSiteLink() {
+    /* 250123 수정 */
+    public List<String> getPromoSiteLink() {
         return promoSiteLink;
     }
 
-    public void setPromoSiteLink(String promoSiteLink) {
+    /* 250123 수정 */
+    public void setPromoSiteLink(List<String> promoSiteLink) {
         this.promoSiteLink = promoSiteLink;
     }
 
-    public String getPromoSiteName() {
+    /* 250123 수정 */
+    public List<String> getPromoSiteName() {
         return promoSiteName;
     }
 
-    public void setPromoSiteName(String promoSiteName) {
+    /* 250123 수정 */
+    public void setPromoSiteName(List<String> promoSiteName) {
         this.promoSiteName = promoSiteName;
     }
 
@@ -118,5 +127,21 @@ public class Posts {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

@@ -19,15 +19,6 @@ public class ChInfoService {
         this.chInfoRepository = chInfoRepository;
     }
 
-    // test code
-    public void addChInfo (String id, String name, String link, String desc, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
-        ChInfo chInfo = new ChInfo(id, name, link, desc, createdAt, updatedAt, deletedAt);
-        // 위 코드를 setter 쓰는 걸로 수정하면 됨
-        // addChInfo 자체에 들어있는 파라미터도 삭제하고, 읽어온 데이터로 대체하면 됨
-        // 데이터 한 줄씩 돌면서 세이브 해주면 될 듯
-        chInfoRepository.save(chInfo);
-    }
-
     // 모든 채널 정보 조회
     public List<ChInfo> getAllChannelInfo() {
         return chInfoRepository.findAll();
@@ -47,5 +38,9 @@ public class ChInfoService {
     // 채널 이름에 포함
     public List<ChInfo> getChannelInfoByNameContaining(String name) {
         return chInfoRepository.findByNameContaining(name);
+    }
+
+    public boolean isChannelExists(String id) {
+        return chInfoRepository.existsById(id);
     }
 }

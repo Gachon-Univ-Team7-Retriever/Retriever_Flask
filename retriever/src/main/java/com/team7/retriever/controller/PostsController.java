@@ -1,12 +1,10 @@
 package com.team7.retriever.controller;
 
+import com.team7.retriever.dto.PostLinkRequest;
 import com.team7.retriever.entity.Posts;
 import com.team7.retriever.service.PostsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,5 +76,11 @@ public class PostsController {
     @GetMapping("/author/{author}")
     public List<Posts> getPostsByAuthor(@PathVariable String author) {
         return PostsService.getPostsByAuthor(author);
+    }
+
+    // 해당 링크로 조회 -> 모든 버전 조회 (수집 시점 순)
+    @PostMapping("/link")
+    public List<Posts> getPostsByLink(@RequestBody PostLinkRequest linkRequest) {
+        return PostsService.getPostsByLink(linkRequest.getLink());
     }
 }

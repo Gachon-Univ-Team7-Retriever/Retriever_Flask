@@ -5,7 +5,7 @@ import java.util.List;
 public class WebCrawlingResponse {
     // private List<CrawlGoogleResponse> google;
     private List<String> google;
-    private List<String> telegram;
+    private List<String> telegrams;
 
     // Getter & Setter
     public List<String> getGoogle() {
@@ -16,11 +16,11 @@ public class WebCrawlingResponse {
         this.google = google;
     }
 
-    public List<String> getTelegram() {
-        return telegram;
+    public List<String> getTelegrams() {
+        return telegrams;
     }
 
-    public void setTelegram(List<String> telegram) {
-        this.telegram = telegram;
+    public void setTelegram(List<String> telegrams) {
+        this.telegrams = telegrams;
     }
 }

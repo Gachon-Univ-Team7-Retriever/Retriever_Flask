@@ -32,7 +32,7 @@ public class ChatBotsController {
 
     // 채널 아이디로 조회
     @GetMapping("/chId/{channelId}")
-    public List<ChatBots> getChatBotsByChannelId(@PathVariable String channelId) {
+    public List<ChatBots> getChatBotsByChannelId(@PathVariable int channelId) {
         return chatBotsService.getChatBotsByChannelId(channelId);
     }
 }

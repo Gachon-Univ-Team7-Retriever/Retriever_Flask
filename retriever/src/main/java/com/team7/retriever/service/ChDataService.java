@@ -23,17 +23,27 @@ public class ChDataService {
     }
 
     // 유저 아이디로 조회
-    public List<ChData> getChannelDataByUserId(String user_id) {
-        return chDataRepository.findByUserId(user_id);
+    public List<ChData> getChannelDataBySenderId(long id) {
+        return chDataRepository.findBySender_Id(id);
+    }
+
+    // 유저 이름으로 조회
+    public List<ChData> getChannelDataBySederName(String senderName) {
+        return chDataRepository.findBySender_Name(senderName);
     }
 
     // 채널 아이디로 조회
-    public List<ChData> getChannelDataByChannelId(String channel_id) {
-        return chDataRepository.findByChannelId(channel_id);
+    public List<ChData> getChannelDataByChannelId(long channelId) {
+        return chDataRepository.findByChannelId(channelId);
     }
 
     // 메시지 url로 조회
-    public List<ChData> getChannelDataByMsgUrl(String msgUrl) {
-        return chDataRepository.findByMsgUrl(msgUrl);
+    public List<ChData> getChannelDataByUrl(String url) {
+        return chDataRepository.findByUrl(url);
+    }
+
+    // 메시지 내용으로 조회 (포함되는 것)
+    public List<ChData> getChannelDataByText(String text) {
+        return chDataRepository.findByText(text);
     }
 }

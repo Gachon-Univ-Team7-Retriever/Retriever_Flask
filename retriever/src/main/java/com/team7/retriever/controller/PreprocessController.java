@@ -14,6 +14,8 @@ public class PreprocessController {
     @Autowired
     private PreprocessService preprocessService;
 
+    // 아래는 직접 실행하는 코드 (업데이트X)
+    /*
     @PostMapping("/preprocess")
     public String htmlPreprocess(@RequestBody PreprocessRequest preprocessRequest) {
         String url = preprocessRequest.getUrl();
@@ -21,4 +23,6 @@ public class PreprocessController {
 
         return preprocessService.postPreprocess(url, requestData);
     }
+
+     */
 }

@@ -13,5 +13,5 @@ public interface ChatBotsRepository extends MongoRepository<ChatBots, String> {
     Optional<ChatBots> findById(String id);
 
     // channel id
-    List<ChatBots> findByChannelId(String channelId);
+    List<ChatBots> findByChannelId(int channelId);
 }

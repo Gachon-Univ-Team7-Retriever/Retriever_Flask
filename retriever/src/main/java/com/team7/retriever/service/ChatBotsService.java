@@ -25,7 +25,7 @@ public class ChatBotsService {
     }
 
     // channel id
-    public List<ChatBots> getChatBotsByChannelId(String channelId) {
+    public List<ChatBots> getChatBotsByChannelId(int channelId) {
         return chatBotsRepository.findByChannelId(channelId);
     }
 }

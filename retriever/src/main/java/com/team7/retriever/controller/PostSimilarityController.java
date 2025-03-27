@@ -28,8 +28,9 @@ public class PostSimilarityController {
         return postSimilarityService.getAllPostSimilarities();
     }
 
+    /* 250117 수정 */
     // 아이디로 조회
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public PostSimilarity getPostSimilarityById(@PathVariable String id) {
         return postSimilarityService.getPostSimilarityById(id);
     }

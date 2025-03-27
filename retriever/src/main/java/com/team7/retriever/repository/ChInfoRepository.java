@@ -18,4 +18,6 @@ public interface ChInfoRepository extends MongoRepository<ChInfo, String> {
     // 채널 이름에 포함 (대소문자 무시)
     @Query("{ 'name': { $regex: ?0, $options: 'i' } }")
     List<ChInfo> findByNameContaining(String name);
+
+    boolean existsById(String id);
 }

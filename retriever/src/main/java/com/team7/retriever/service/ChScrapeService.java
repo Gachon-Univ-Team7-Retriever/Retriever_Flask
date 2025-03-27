@@ -2,6 +2,7 @@ package com.team7.retriever.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.team7.retriever.dto.ChDataResponse;
 import com.team7.retriever.entity.ChData;
 import com.team7.retriever.entity.ChInfo;
 import com.team7.retriever.repository.ChDataRepository;
@@ -13,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 @Service
 public class ChScrapeService {
@@ -26,6 +28,41 @@ public class ChScrapeService {
         this.chInfoRepository = chInfoRepository;
     }
 
+    /*
+    백엔드 측 수정 사항 비교
+
+    private String id; O
+    private String name; -> TITLE
+    -> PRIVATE STRING USERNAME
+    -> PRIVATE BOOLEAN RESTRICTED
+    private String link; -> X
+    private String description; -> O 보류 BE
+    -> PRIVATE LOCALDATETIME STARTED AT
+    private LocalDateTime createdAt; -> DISCOVERED AT
+    private LocalDateTime updatedAt; -> O
+    private LocalDateTime deletedAt; -> O 보류
+    -> PRIVATE LOCALDATETIME CHATBOT UPDATED AT
+    private int promoCount; -> NEW BE
+    private String status; -> NEW BE
+     */
+
+    // 스케줄 1 에서 실행되는 메서드
+    public void channelScrape(String channelKey) {
+        String infoAPI = "http://127.0.0.1:5000/telegram/channel/info";
+        String api = "http://127.0.0.1:5000/telegram/channel/scrape";
+
+        Map<String, String> requestBody = Map.of("channel_key", channelKey);
+        ResponseEntity<String> infoResponse = restTemplate.postForEntity(infoAPI, requestBody, String.class); // 사용X
+        ChDataResponse response = restTemplate.postForObject(api, requestBody, ChDataResponse.class);
+        String message = response.getMessage();
+        String status = response.getStatus();
+        System.out.println("\t\t\t\t[ChScrapeService] " + message);
+        System.out.println("\t\t\t\t[ChScrapeService] 채널 " + channelKey + " 스크랩 상태: " +  status);
+
+        // saveChDataList(responseBody, channelKey); // -> 기존 직접 저장하는 메서드 호출하던 부분 -> 삭제
+    }
+
+    /*
     public String postScrapeData(String requestBody, String channelName) {
         // Flask API URL
         String api = "http://127.0.0.1:5000/telegram/channel/scrape";
@@ -57,6 +94,9 @@ public class ChScrapeService {
         }
     }
 
+     */
+
+    /*
     private void saveChDataList(String responseBody, String channelName) {
         try {
             // JSON 형식 응답을 파싱
@@ -112,5 +152,7 @@ public class ChScrapeService {
             e.printStackTrace();
         }
     }
+
+     */
 
 }

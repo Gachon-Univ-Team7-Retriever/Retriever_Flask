@@ -6,7 +6,6 @@ import com.team7.retriever.service.ChInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,12 +16,15 @@ public class ChInfoController {
     private ChInfoService infoService;
 
     // api test (테스트용 - 채널 정보 직접 생성, 아래 데이터)
+    /*
     @PostMapping("/addChInfo")
     public String addChInfo(@RequestBody ChInfo chInfo) {
         LocalDateTime date = LocalDateTime.now();
         infoService.addChInfo("api test", "api test updated name", "api test link", "this is api test", date, date, date);
         return "success add ch info";
     }
+
+     */
 
     // 전체 채널 조회
     @GetMapping("/all")
@@ -53,7 +55,4 @@ public class ChInfoController {
     public List<ChInfo> getChannelByNameContaining(@PathVariable String name) {
         return infoService.getChannelInfoByNameContaining(name);
     }
-
-    // + 채널 이름 조회 추가 (포함 조건으로) ---> 완료
-    // + 아이디 자동 조합 기능 필요
 }
